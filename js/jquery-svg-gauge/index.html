@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE, IE10, IE=9; IE=8; IE=7" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>jQuery SVG Gauge Plugin</title>
+  <link rel="stylesheet" href="style.css" />
+  <script data-require="jquery@*" data-semver="2.0.3" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+  <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+  <script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+  <script data-require="raphael@*" data-semver="2.1.0" src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="geometry.js"></script>
+  <script src="raphael-extensions.js"></script>
+  <script src="jquery-svg-gauge.js"></script>
+</head>
+
+<body>
+  <div class="demo">
+    <!--
+      <p>Note: There seems to be a transformation rotation precision issue in IE8. Applying this <a href="https://groups.google.com/forum/?fromgroups=#!msg/raphaeljs/sYY-CTMw6DM/USHIDoKSc0cJ" target="_blank">patch to Raphael</a> seems to address the issue. While there are no CDN</p>
+    -->
+    <h1>jQuery SVG Gauge Plugin</h1>
+    <p>You don't need to learn Raphael.js to use this.</p>
+    <p>This jQuery plugin uses Raphael.js internally to draw customizable SVG Gauges, and allows you to set/get values by simply using .val()</p>
+    <p>View README for details</p>
+    <p>Blogged at: <a href="http://terryyoung.blogspot.hk/2013/12/jquery-svg-gauge-plugin-10.html" target="_blank">http://terryyoung.blogspot.hk/2013/12/jquery-svg-gauge-plugin-10.html</a></p>
+    <p>Click on each gauge to view sample code.</p>
+
+    <div class="metal-border speedometer-half" id="example1A">
+      <div class="example"></div>
+    </div>
+    <div class="code" id="code_example1A"></div>
+    <script type="text/javascript" class="example" id="script_example1A">
+      // default functionality
+      $(document).ready(function() {
+        $('#example1A div.example').svgGauge({
+          'value': 75
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-half" id="example1B">
+      <div class="example"></div>
+      <div class="gauge-value"></div>
+      <div class="gauge-percentage"></div>
+    </div>
+    <div class="code" id="code_example1B"></div>
+    <script type="text/javascript" class="example" id="script_example1B">
+      // positive startingIncline, symmetrical speedometer
+      $(document).ready(function() {
+        $('#example1B div.example').svgGauge({
+          'value': 75,
+          'minValue': 0,
+          'maxValue': 500,
+          'startingIncline': 30,
+          'minorTicks': {
+            'count': 1
+          },
+          'valuePrecision': 0,
+          'percentagePrecision': 0,
+          'hand': {
+            'centerPointRadius': 2
+          },
+          'onAnimate': function(data, gauge) {
+            var $this = $(this),
+              $parent = $this.parent(),
+              $value = $parent.find('div.gauge-value'),
+              $percentage = $parent.find('div.gauge-percentage');
+
+            $value.html(data.value + '/' + gauge.maxValue);
+            $percentage.html((data.percentage * 100).toFixed(0) + '%');
+          }
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-half" id="example1C">
+      <div class="example"></div>
+    </div>
+    <div class="code" id="code_example1C"></div>
+    <script type="text/javascript" class="example" id="script_example1C">
+      // symmetrical speedometer, mimic full zone area fill
+      $(document).ready(function() {
+        $('#example1C div.example').svgGauge({
+          'value': 75,
+          'startingIncline': 0,
+          'minorTicks': {
+            'count': 1
+          },
+          'zones': {
+            'normal': {
+              'attr': {
+                'stroke-width': 70,
+                'opacity': 0.3
+              }
+            },
+            'warning': {
+              'attr': {
+                'stroke-width': 70,
+                'opacity': 0.3
+              }
+            },
+            'critical': {
+              'attr': {
+                'stroke-width': 70,
+                'opacity': 0.3
+              }
+            }
+          }
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-half" id="example1D">
+      <div class="example"></div>
+      <div class="gauge-value"></div>
+    </div>
+    <div class="code" id="code_example1D"></div>
+    <script type="text/javascript" class="example" id="script_example1D">
+      // two color zones example, asymmetrical speedometer
+      $(document).ready(function() {
+        $('#example1D div.example').svgGauge({
+          'value': 75,
+          'startingIncline': 0,
+          'endingIncline': 150,
+          'margin': 10,
+          'majorTicks': {
+            'count': 10,
+            'length': 10,
+            'attr': {
+              'stroke-width': 2
+            }
+          },
+          'minorTicks': {
+            'count': 1,
+            'length': 4,
+            'attr': {
+              'stroke-width': 2
+            }
+          },
+          'zones': {
+            'normal': {
+              'show': false,
+              'fromPercentage': 0,
+              'toPercentage': 0.3
+            },
+            'warning': {
+              'fromPercentage': 0.3,
+              'toPercentage': 0.7,
+              'attr': {
+                'stroke': '#FFA100',
+                'stroke-width': 5
+              }
+            },
+            'critical': {
+              'fromPercentage': 0.7,
+              'toPercentage': 1,
+              'attr': {
+                'stroke-width': 10
+              }
+
+            }
+          },
+          'hand': {
+            'centerPointRadius': 6,
+            'length': 45
+          },
+          'onAnimate': function(data, gauge) {
+            var $this = $(this),
+              $parent = $this.parent(),
+              $value = $parent.find('div.gauge-value');
+            $value.html(data.value.toFixed(0));
+          }
+        });
+      });
+    </script>
+    <br class="clear" />
+    <br class="clear" />
+    <div class="metal-border speedometer-3quarters" id="example1E">
+      <div class="example"></div>
+      <div class="gauge-percentage"></div>
+      <div class="gauge-overlay normal"></div>
+      <div class="gauge-status normal"></div>
+    </div>
+    <div class="code" id="code_example1E"></div>
+    <script type="text/javascript" class="example" id="script_example1E">
+      // negative startingIncline symmetrical speedometer
+      $(document).ready(function() {
+        $('#example1E div.example').svgGauge({
+          'value': 75,
+          'startingIncline': -30,
+          'percentagePrecision': 0,
+          'onZoneChange': function(zone, data, gauge) {
+            var $this = $(this),
+              $parent = $this.parent(),
+              $status = $parent.find('div.gauge-status'),
+              $overlay = $parent.find('div.gauge-overlay');
+
+            $status.add($overlay).removeClass('normal warning critical')
+              .addClass(zone);
+            $status.html(zone);
+          },
+          'onAnimate': function(data, gauge) {
+            var $this = $(this),
+              $parent = $this.parent(),
+              $percentage = $parent.find('div.gauge-percentage');
+            $percentage.html('CPU: ' + data.percentageString);
+          }
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-3quarters" id="example1F">
+      <div class="example"></div>
+    </div>
+    <div class="code" id="code_example1F"></div>
+    <script type="text/javascript" class="example" id="script_example1F">
+      // asymmetrical speedometer example
+      $(document).ready(function() {
+        $('#example1F div.example').svgGauge({
+          'value': 100,
+          'minValue': 0,
+          'maxValue': 270,
+          'startingIncline': -90,
+          'endingIncline': 180,
+          'margin': 15,
+          'majorTicks': {
+            'count': 6,
+            'length': 10,
+            'attr': {
+              'stroke': '#023',
+              'stroke-width': 3
+            }
+          },
+          'minorTicks': {
+            'count': 1,
+            'attr': {
+              'stroke': '#003'
+            }
+          },
+          'hand': {
+            'centerPointRadius': 2,
+            'length': 50,
+            'attr': {
+              'stroke': '#003'
+            }
+          },
+          'zones': {
+            'normal': {
+              'fromPercentage': 0,
+              'toPercentage': 3 / 6,
+              'attr': {
+                'stroke': '#018905',
+                'stroke-width': 4
+              }
+            },
+            'warning': {
+              'show': false,
+              'fromPercentage': 3 / 6,
+              'toPercentage': 5 / 6
+            },
+            'critical': {
+              'fromPercentage': 5 / 6,
+              'toPercentage': 1,
+              'attr': {
+                'stroke-width': 10
+              }
+            }
+          }
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-3quarters" id="example1G">
+      <div class="example"></div>
+      <div class="gauge-value"></div>
+    </div>
+    <div class="code" id="code_example1G"></div>
+    <script type="text/javascript" class="example" id="script_example1G">
+      // thermometer example:
+       // blue zone represents negative values
+       // red zone represents values over 40
+      $(document).ready(function() {
+        $('#example1G div.example').svgGauge({
+          'value': 25.5,
+          'minValue': -20,
+          'maxValue': 60,
+          'startingIncline': -60,
+          'endingIncline': 180,
+          'margin': 8,
+          'majorTicks': {
+            'count': 8,
+            'length': 20,
+            'attr': {
+              'stroke': '#023',
+              'stroke-width': 3
+            }
+          },
+          'minorTicks': {
+            'count': 4,
+            'attr': {
+              'stroke': '#023'
+            }
+          },
+          'hand': {
+            'centerPointRadius': 2,
+            'length': 50,
+            'attr': {
+              'stroke': '#003'
+            }
+          },
+          'zones': {
+            'normal': {
+              'fromPercentage': 0,
+              'toPercentage': 2 / 8,
+              'attr': {
+                'stroke': '#10E5ED',
+                'stroke-width': 20
+              }
+            },
+            'warning': {
+              'fromPercentage': 2 / 8,
+              'toPercentage': 60 / 80,
+              'attr': {
+                'stroke': '#cdcdcd',
+                'stroke-width': 20
+              }
+            },
+            'critical': {
+              'fromPercentage': 60 / 80,
+              'toPercentage': 1,
+              'attr': {
+                'stroke-width': 20
+              }
+            }
+          },
+          'onAnimate': function(data, gauge) {
+            var $this = $(this),
+              $parent = $this.parent(),
+              $value = $parent.find('div.gauge-value');
+            $value.html(data.value.toFixed(1) + '&deg;C');
+          }
+        });
+      });
+    </script>
+    <div class="metal-border speedometer-3quarters" id="example1H">
+      <div class="example"></div>
+    </div>
+    <div class="code" id="code_example1H"></div>
+    <script type="text/javascript" class="example" id="script_example1H">
+      // thermometer example:
+       // blue zone represents negative values
+       // red zone represents values over 40
+      $(document).ready(function() {
+        $('#example1H div.example').svgGauge({
+          'value': 25.5,
+          'minValue': -30,
+          'maxValue': 60,
+          'startingIncline': 0,
+          'endingIncline': 270,
+          'margin': 15,
+          'majorTicks': {
+            'count': 9,
+            'length': 20,
+            'attr': {
+              'stroke': '#023',
+              'stroke-width': 3
+            }
+          },
+          'minorTicks': {
+            'count': 1,
+            'attr': {
+              'stroke': '#023'
+            }
+          },
+          'hand': {
+            'centerPointRadius': 2,
+            'length': 50,
+            'attr': {
+              'stroke': '#003'
+            }
+          },
+          'zones': {
+            'normal': {
+              'fromPercentage': 0,
+              'toPercentage': 1 / 3,
+              'attr': {
+                'stroke-width': 6
+              }
+            },
+            'warning': {
+              'fromPercentage': 1 / 3,
+              'toPercentage': 2 / 3,
+              'attr': {
+                'stroke-width': 6
+              }
+            },
+            'critical': {
+              'fromPercentage': 2 / 3,
+              'toPercentage': 1,
+              'attr': {
+                'stroke-width': 20
+              }
+
+            }
+          }
+        });
+      });
+    </script>
+
+
+
+
+    <br class="clear" />
+
+
+
+    <div class="demo">
+      <p>Value setters and getters</p>
+      <div class="default-gauge" id="example2">
+        <div class="example"></div>
+      </div>
+      Type any value from 0 to 100
+      <br>
+      <input type="text" maxlength="3" size="3" id="example2_val" autocomplete="off" value="100">
+      <button id="example2_set">Set</button>
+      <button id="example2_get">Get</button>
+      <div class="code" id="code_example2"></div>
+      <script type="text/javascript" class="example" id="script_example2">
+        $(document).ready(function() {
+          $('#example2').svgGauge({
+            'value': 100,
+            'minValue': 0,
+            'maxValue': 100,
+            'startingIncline': -90,
+            'endingIncline': 180,
+            'arc': {
+              'attr': {
+                'stroke': '#005d01'
+              }
+            },
+            'minorTicks': {
+              'attr': {
+                'stroke': '#005d01'
+              }
+            },
+            'majorTicks': {
+              'attr': {
+                'stroke': '#005d01'
+              }
+            },
+            'hand': {
+              'attr': {
+                'fill': '#00CA02'
+              }
+            }
+          });
+
+          $('#example2_set').on('click', function() {
+            var newVal = $('#example2_val').val();
+            $('#example2').val(newVal);
+          });
+
+          $('#example2_get').on('click', function() {
+            alert($('#example2').val());
+          });
+        });
+      </script>
+    </div>
+
+
+
+  </div>
+  <br class="clear" />
+  <script type="text/javascript">
+    /**
+     * The following is *NOT* usage code of jQuery SVG Gauge,
+     * it converts actual sample scripts into tooltips.
+     */
+    $(document).ready(function() {
+      var $demos = $('div.demo');
+
+      $('div.example').each(function(i, el) {
+        var $example = $(el),
+          id = $example.parent().attr('id'),
+          scriptID = 'script_' + id,
+          codeID = 'code_' + id,
+          $script = $('#' + scriptID),
+          $code = $('#' + codeID);
+
+        $code
+          .html('<pre>' + $script.text() + '</pre>')
+          .hide()
+          .on('click', 'div.close', function(event) {
+            $(this).closest('div.code').hide();
+          });
+
+        $example.parent().on('click', function(event) {
+          var $this = $(this),
+            $code = $('#code_' + $this.attr('id'));
+
+          $('div.code').hide();
+          $('div.demo-close').remove();
+
+          $code.show().position({
+            my: 'left top',
+            at: 'center center',
+            of: $this
+          });
+
+          $('<div class="demo-close"></div>').prependTo('body').position({
+            my: 'right top',
+            at: 'right+10 top-10',
+            of: $code
+          });
+
+        });
+      });
+
+      $('body').on('click', 'div.demo-close', function(event) {
+        $('div.demo-close').remove();
+        $('div.code').hide();
+      });
+
+      function demo() {
+        $demos.first().find('div.example').svgGauge('randomize');
+      }
+      window.demoTimer = setInterval(demo, 2000);
+    });
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

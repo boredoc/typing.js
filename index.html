@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>typing.js</title> 
+<script
+  src="https://code.jquery.com/jquery-1.3.2.min.js"
+  integrity="sha256-yDcKLQUDWenVBazEEeb0V6SbITYKIebLySKbrTp2eJk="
+  crossorigin="anonymous"></script>
+<script language="javascript" src="js/jquery.dimensions.js"></script>
+<script language="javascript" src="js/jquery.tooltip.min.js"></script> 
+<script language="javascript" src="js/wpmtw.js?<?=$this->session->userdata('session_id');?>"></script> 
+<link rel="stylesheet" type="text/css" media="all" href="css/style.css?<?=$this->session->userdata('session_id');?>" />  
+<link rel="stylesheet" type="text/css" media="all" href="css/jquery.tooltip.css" />  
+<script>
+
+  
+    wpmtw.url = '<?=site_url('')?>';
+    wpmtw.index = '<?=site_url('/')?>';
+  
+//wpmtw.debug = false;
+ 
+$(document).ready(function(){
+        wpmtw.init();  
+}); 
+
+</script>
+</head> 
+<body> 
+    
+    
+    
+<div align="center">
+    <div id="border" align="center"> 
+		 <!-- 
+		<div id="top" style="clear:both;">
+                                            <div id="logo" ><a href="<?=site_url('/')?>"><img src="<?=site_url('/')?>/images/logo1.jpg" alt="logo" border="0" /></a></div>
+                                            <div id="logo-word" class="hit-the-floor">a Boredoc app</div>
+		</div>
+	                    -->
+        <div id="left" class="float" > 
+            
+            
+            
+            
+            <!--  exam_status -->
+            <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.5/all/gauge.min.js"></script>
+  
+ 
+
+    <div id="link" class="float fs_div">
+        <fieldset>
+            <legend>{ 即時資訊 }</legend>
+                 <div class="fs_inner_div">
+                    <div id="exam_status" class="black_board" align="left"> 
+                        <div id="state-counter" class="yellow"></div>
+                        <div id="state-realtime_wpm" class="red"></div>
+                        <div id="state-progress" class="green"></div>
+                  </div>
+                </div>  
+            
+            
+             <canvas id="speed_gauge" class="hide"></canvas>
+             <canvas id="progress_gauge" class="hide"></canvas>
+ 
+        </fieldset>
+    </div>
+    
+  
+  <script>
+  
+
+  </script>
+            
+            
+            <!--  exam_status -->
+            
+            
+            
+                    
+        </div> 
+        
+        <div id="center" class="float"> 
+            <div  class="float fs_div">
+                <fieldset>
+                    <legend id="content_title">{ 請輸入文章 }</legend> 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <script language="javascript" src="js/jquery.timers.js"></script>
+<script type="text/javascript" src="js/jquery.scrollTo.js"></script> 
+<script type="text/javascript" src="js/wpmtw.exam.js?<?=$this->session->userdata('session_id');?>"></script>   
+<script type="text/javascript" src="js/wpmtw.exam.editor.js?<?=$this->session->userdata('session_id');?>"></script>   
+                    
+                    
+                    <script>
+$(document).ready(function(){
+	wpmtw.exam.editor.init();	
+});
+</script>
+<style>
+#exam_past_area{
+	width:100%;
+	font-size:16px;
+	height:500px;
+	font-family:"微軟正黑體", Arial, Helvetica, sans-serif,"新細明體" ; 
+	background-color:#FFF;
+	border: none; 
+}
+#exam_preview{ 
+	font-size:16px;
+	text-align:left;
+	background-color:#FFF;
+	color:#222; 
+}
+.inputline{
+	width:100%;
+	font-family:"微軟正黑體", Arial, Helvetica, sans-serif,"新細明體" ; 
+	font-size:16px;
+	border:none;
+	background-color:#FFF;
+	border-bottom:dashed 1px #000000;
+} 
+</style> 
+	<textarea id="exam_past_area"></textarea> 
+	<div id="exam_preview" style="display:none"></div>
+	
+    <div style="margin:10px; text-align:center;">
+		<input type="button" value="下一步" onClick="wpmtw.exam.editor.do_submit();"class="bt">  
+		<input type="button" value="重設" onClick="wpmtw.exam.editor.do_reset();" class="bt">  
+	</div>
+	<form action=""  id="frm" method="post">
+		<input type="hidden" id="f_title" name="f_title">
+		<input type="hidden" id="f_lines" name="f_lines">
+		<input type="hidden" id="f_full" name="f_full">
+		<input type="hidden" id="f_half" name="f_half">
+        <input type="hidden" id="mid" name="mid" value="" />
+	</form>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                                </fieldset>
+    <textarea   id="debug"></textarea>
+            </div> 
+            
+            
+                    </div> 
+        
+                
+        <div id="right" class="float">  
+        
+            
+            
+            
+            
+            <!-- exam_char -->
+            
+    <div id="share" class="float fs_div">
+        <fieldset>
+            <legend>{ 字元 }</legend>
+            	<div class="fs_inner_div" align="center" >
+ 
+                    <div id="char" class="black_board" align="center" style="font-size:16px; height:100px;"> 
+                    
+                    
+                    </div>
+                    
+
+                </div>  
+        </fieldset>
+    </div>
+    
+            
+            
+            <!-- exam_char -->
+            
+            
+               
+        </div> 
+    </div>
+</div>
+</body>
+</html> 

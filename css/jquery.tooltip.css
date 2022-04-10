@@ -1,0 +1,22 @@
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	border: 1px solid #111;
+	/*background-color: #eee;*/
+	background-color: #CCFAC0;
+	padding: 2px;
+	opacity: 0.85;
+	text-align:left; 
+	font-family: 'lucida grande', helvetica, verdana, arial, sans-serif;
+        
+                
+        	background: #404040;
+	/*padding: 0px 10px;*/
+	border: 3px solid #333;
+                    border-radius: 5px;
+                    
+                    color: #EEE;
+                    
+                    
+}
+#tooltip h3, #tooltip div { margin: 0; font-size:12px;font-family: 'lucida grande', helvetica, verdana, arial, sans-serif;}

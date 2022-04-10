@@ -1,0 +1,231 @@
+ 
+
+/************************ EXAMPLE 1 ************************/
+
+/* default speedometer face style */
+div.default-gauge {
+	width:150px;
+	height:160px;
+	border:1px solid #232;
+	border-radius:10px;
+	overflow:hidden;
+	background-color:#121;
+	cursor:pointer;
+}
+
+div.metal-border {
+	float:left;
+	margin-right:10px;
+	width:153px;
+	height:164px;
+	padding:5px;
+	cursor:pointer;
+
+	position:relative;
+
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+
+	border: 1px solid #949494;
+
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+/* fan-shaped speedometer */
+div.speedometer-half,
+div.metal-border.speedometer-half div.example {
+	height:90px;
+}
+div.metal-border.speedometer-half
+{
+	height:95px;
+}
+
+div.speedometer-3quarters,
+div.metal-border.speedometer-3quarters div.example {
+	height:150px;
+}
+div.metal-border.speedometer-3quarters
+{
+	height:155px;
+}
+
+/* white speedometer */
+div.metal-border div.example {
+	border:1px solid #232;
+	border-radius:10px;
+	background-color: #ffffff;
+
+	background: -moz-linear-gradient(
+		top,
+		#878787 0%,
+		#dedede 50%,
+		#dedede 50%,
+		#adaaad);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#878787),
+		color-stop(0.50, #dedede),
+		color-stop(0.50, #dedede),
+		to(#adaaad));
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	-webkit-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+div.gauge-value,
+div.gauge-percentage,
+div.gauge-status {
+	position:absolute;
+}
+
+#example1B div.gauge-value {
+	top:72px;
+	right:15px;
+	width:75px;
+	text-align:right;
+	font-size:10pt;
+	color:#000;
+}
+
+#example1B div.gauge-percentage {
+	top:35px;
+	width:150px;
+	font-size:32pt;
+	font-weight:bold;
+	color:#000;
+	text-align:center;
+	opacity:0.2;
+}
+
+#example1D div.gauge-value {
+	top:60px;
+	right:15px;
+	width:75px;
+	font-size:22pt;
+	color:#000;
+	text-align:right;
+}
+
+#example1E div.gauge-status {
+	top:120px;
+	left:38px;
+	width:80px;
+	padding:5px 3px 2px 3px;
+	font-size:9pt;
+	text-align:center;
+	vertical-align:bottom;
+	border-radius:8px;
+	-moz-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	-webkit-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+}
+
+#example1E div.gauge-status.normal,
+#example1E div.gauge-overlay.normal {
+	background-color:#009b0b;
+	color:#aef9b6;
+	text-shadow:none;
+}
+
+#example1E div.gauge-status.warning,
+#example1E div.gauge-overlay.warning {
+	background-color:#efeb00;
+	color:#81610b;
+	text-shadow:none;
+}
+
+#example1E div.gauge-status.critical,
+#example1E div.gauge-overlay.critical {
+	background-color:#c60217;
+	color:#f9c9d5;
+	text-shadow:none;
+}
+
+#example1E div.gauge-overlay {
+	opacity:0.25;
+	border-radius:70px;
+	width:122px;
+	height:122px;
+	position:absolute;
+	top:20px;
+	left:20px;
+}
+
+#example1E div.gauge-percentage {
+	top:90px;
+	width:150px;
+	font-size:12pt;
+	text-align:center;
+	color:#565656;
+	opacity:0.5;
+}
+
+#example1G div.gauge-value {
+	top:110px;
+	right:20px;
+	width:120px;
+	font-size:16pt;
+	color:#000;
+	text-align:right;
+}
+
+div.demo div.example {
+	float:left;
+	margin-right:10px;
+}
+
+div.demo div.code {
+	font-family: Consolas;
+	font-size:9pt;
+	margin-right:10px;
+	padding-left:5px;
+	background-color:#292929;
+}
+
