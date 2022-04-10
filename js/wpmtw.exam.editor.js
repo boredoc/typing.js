@@ -116,7 +116,9 @@ wpmtw.exam.editor = {
 			} // end each line 
 
 			//$('#exam_preview').html(lines.join('<BR>'));
-			html = '<div align=center><input type="text" id="title" class="inputline" style="width:300px;"  value="" maxlength="20" ></div>';
+                                                            //  type.js no need title
+			//html = '<div align=center><input type="text" id="title" class="inputline" style="width:300px;"  value="" maxlength="20" ></div>';
+                                                            html = '<div align=center><input type="text" class="inputline" ></div>';
 			for (i = 0; i < lines.length; i++) {
 				html += '<input id="line' + i + '" type="text"  class=inputline readonly />';
 			}
@@ -158,17 +160,17 @@ wpmtw.exam.editor = {
 			$('#exam_past_area').hide();
 			$('#exam_preview').show();
 
-			$('#title').val(lines[0].substring(0, 20)).css('background-color', '#FFFFB0');
-			$('#title').focus(function(e) {
-				if ($('#title').val() == '請輸入標題') {
-					$('#title').val('').css('color', '#222');
-				}
-			});
-			$('#title').blur(function(e) {
-				if ($('#title').val() == '請輸入標題' || $.trim($('#title').val()) == '') {
-					$('#title').val('請輸入標題').css('color', '#555');
-				}
-			});
+//			$('#title').val(lines[0].substring(0, 20)).css('background-color', '#FFFFB0');
+//			$('#title').focus(function(e) {
+//				if ($('#title').val() == '請輸入標題') {
+//					$('#title').val('').css('color', '#222');
+//				}
+//			});
+//			$('#title').blur(function(e) {
+//				if ($('#title').val() == '請輸入標題' || $.trim($('#title').val()) == '') {
+//					$('#title').val('請輸入標題').css('color', '#555');
+//				}
+//			});
 		}
 
 	},
@@ -182,12 +184,12 @@ wpmtw.exam.editor = {
 
 		with(wpmtw.exam.editor) {
 			if ($('#exam_past_area').css('display') == 'none') {
-				var title = $.trim($('#title').val());
-				if (title == '請輸入標題' || title == '') {
-					return alert('請輸入標題！');
-				}
-                                                                                if(!confirm('確定新增此文章？'))
-                                                                                return;
+//				var title = $.trim($('#title').val());
+//				if (title == '請輸入標題' || title == '') {
+//					return alert('請輸入標題！');
+//				}
+//                                                                                if(!confirm('確定新增此文章？'))
+//                                                                                return;
 
 				var exam = new Array();
 				for (i = 0; i < totalline - 3; i++) {
@@ -209,15 +211,19 @@ wpmtw.exam.editor = {
                                                                                 
     				$('#f_full').val(full);
 				$('#f_half').val(half);
-				$('#f_title').val(title);
+				//$('#f_title').val(title);
 				$('#f_lines').val(exam.join('\n'));
 				//alert($('#f_lines').val())
                                 
                                                                                 
                                                                                 //$('#frm').submit();
                                                                                 
-                                                                                console.log(document.cookie);
-                                                                                
+                                                                                 $('#dvEditor').hide();
+                                                                                 $('#dvPlay').show();
+                                                                                 
+                                                                                 
+                                                                                 wpmtw.exam.play.preInit(  full + half , full , half   ,  exam  );
+                                                                                 
 				return false;
 			}
 
