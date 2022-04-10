@@ -111,7 +111,7 @@ wpmtw.exam.play = {
 
     
 		with(wpmtw.exam.play) {
-			$('#past_line' + (title_index)).html("&nbsp;");
+			$('#exam').find('#past_line' + (title_index)).html("&nbsp;");
                                                       
 			if (i == 0) {
                                                                                 
@@ -137,11 +137,11 @@ wpmtw.exam.play = {
 				chk_line[0]["start"] = start_time;
 
 
-				$('#line1').css('color', '#444');
-				$('#line2').css('color', '#666');
-				$('#line3').css('color', '#888');
+				$('#exam').find('#line1').css('color', '#444');
+				$('#exam').find('#line2').css('color', '#666');
+				$('#exam').find('#line3').css('color', '#888');
 				for (i = 4; i < line.length; i++) {
-					$('#line' + i).css('color', '#AAA');
+					$('#exam').find('#line' + i).css('color', '#AAA');
 				}
 
 
@@ -220,7 +220,7 @@ wpmtw.exam.play = {
 			//alert('pause press')	
 
 			for (i = 8; i < line.length; i++) {
-				$('#line' + i).hide();
+				$('#exam').find('#line' + i).hide();
 			}
 
 			$('#keyinline').hide();
@@ -250,12 +250,12 @@ wpmtw.exam.play = {
 			add_log("finish:" + finish_time);
 
 			for (i = 0; i < chk_line.length; i++) {
-				$('#past_line' + i).html(chk_line[i]['line']);
-				$('#line' + i).html("&nbsp;");
+				$('#exam').find('#past_line' + i).html(chk_line[i]['line']);
+				$('#exam').find('#line' + i).html("&nbsp;");
 			}
 
 			for (i = chk_line.length; i < total_line; i++) {
-				$('#past_line' + i).html('&nbsp;');
+				$('#exam').find('#past_line' + i).html('&nbsp;');
 			}
 
 			cal_score();
@@ -417,15 +417,15 @@ wpmtw.exam.play = {
 
 
 			for (i = 0; i < total_line; i++) {
-				next = (i != total_line - 1) ? $('#past_line' + (i + 1)).html() : $('#line0').html();
-				$('#past_line' + i).html(next);
+				next = (i != total_line - 1) ? $('#exam').find('#past_line' + (i + 1)).html() : $('#exam').find('#line0').html();
+				$('#exam').find('#past_line' + i).html(next);
 			}
 			for (i = 0; i < line.length; i++) {
-				next = (i == line.length - 1) ? '&nbsp;' : $('#line' + (i + 1)).html();
+				next = (i == line.length - 1) ? '&nbsp;' : $('#exam').find('#line' + (i + 1)).html();
 				if (i == 0)
-					$('#line0').html('<span class=current_char>' + next.charAt(0) + '</span>' + next.substr(1, next.length));
+					$('#exam').find('#line0').html('<span class=current_char>' + next.charAt(0) + '</span>' + next.substr(1, next.length));
 				else
-					$('#line' + i).html(next);
+					$('#exam').find('#line' + i).html(next);
 			}
 
 
@@ -547,7 +547,7 @@ wpmtw.exam.play = {
                             
                                                             add_log("result="+result);
 
-			$('#line0').html(result);
+			$('#exam').find('#line0').html(result);
                         
                                                             if(showReturn)
                                                             {
@@ -718,6 +718,9 @@ wpmtw.exam.play = {
 				chk_line[i]["finish"] = -1;
 			}
 
+                                                        
+                                                            console.log('lines:'+line.length);
+
 
 			$('#debug').val("");
 			//$('#debug').hide();
@@ -884,8 +887,10 @@ wpmtw.exam.play = {
 
 			$("#keyin").attr('maxlength', unhtmlspecialchars(line[0]).length);
 
-			for (i = 0; i < line.length; i++) {
-				$('#line' + i).html(line[i]);
+			for (i = 0; i < line.length; i++) { 
+				$('#exam').find('#line'+i).html(line[i]);                                              
+                                                                                //document.getElementById('line' + i).innerHTML = 'dddd';
+                                                                    
 			}
 
 			//$('#exam').jScrollPane({animateTo:true, animateInterval:50, animateStep:5});
@@ -896,14 +901,17 @@ wpmtw.exam.play = {
 			//$('body').css('overflow','hidden');
 			//$('#exam').css('overflow','auto');
 
+                                                            //$('#line0').html('test string!!!');
+                                                            
+                                                             
 
 			total_line = (line.length < 6) ? 6 : line.length;
 
 			title_index = (line.length < 6) ? 4 : line.length - 3;
 
-			$('#past_line' + (title_index)).html("<center><!--<B>" + title + "</B> --><a href='javascript:wpmtw.exam.play.preview();'  class='' title='preview'>預覽全文</a></center>");
+			//$('#past_line' + (title_index)).html("<center><!--<B>" + title + "</B> --><a href='javascript:wpmtw.exam.play.preview();'  class='' title='preview'>預覽全文</a></center>");
 
-			$('#past_line' + (title_index) + ' a').tooltip({
+			$('#exam').find('#past_line' + (title_index) + ' a').tooltip({
 				track: true,
 				delay: 0,
 				showURL: false,
@@ -933,11 +941,11 @@ wpmtw.exam.play = {
                             //<? for($i=0;$i<$line_count;$i++) : ?>
                             //wpmtw.exam.play.line[<?=$i?>] = '<?=addslashes(htmlspecialchars($exam_lines[$i]))?>';
                             //<? endfor ; ?> 
-                            
+                            wpmtw.exam.play.line = [];
                             for(i=0; i < exam_lines.length; i++)
                             { 
-                                console.log(exam_lines[i]);
-                                wpmtw.exam.play.line[i] = exam_lines[i];
+                                //console.log(exam_lines[i]);
+                                wpmtw.exam.play.line.push(exam_lines[i]);
                                 
                             }
                             
@@ -950,7 +958,22 @@ wpmtw.exam.play = {
                             wpmtw.exam.total_words = total_words;
                             wpmtw.exam.full = full;
                             wpmtw.exam.half = half; 
-
+                            
+                            for(i=0; i < exam_lines.length; i++) 
+                                $('#exam').append('<div id="past_line'+ i +'" class="line">&nbsp;</div>');  
+                            
+                            for(i=exam_lines.length; i < 6; i++)  
+                                $('#exam').append('<div id="past_line' + i + '" class="line">&nbsp;</div>');  
+                            
+                            $('#exam').append('<div id="line0" class="line">&nbsp;</div>');
+                            $('#exam').append('<div id="keyinline" class="line" style=" background-color:#FFFFB0; border-bottom: dashed 1px #FF0000;"><input type="text" id="keyin" onpaste="return false;"/></div>');
+                            for(i=1 ; i<6 ; i++)
+                                $('#exam').append('<div id="line'+i+'" class="line">&nbsp;</div>');
+                            
+                            for(i=6; i < exam_lines.length; i++) 
+                                $('#exam').append('<div id="line'+i+'" class="line">&nbsp;</div>');                            
+                            
+                
                             wpmtw.exam.play.init();
 
  
