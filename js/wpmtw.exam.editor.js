@@ -49,28 +49,34 @@ wpmtw.exam.editor = {
                                                                                                                         isHalf = temp_char.match(re_half);
                                                                                                                         
                                                                                                                         isBlank = temp_char_code == 12288 || temp_char_code == 32;
-                                                                                                                        
-						if (temp_line == '' && isBlank) {
+                                                                                                                           console.log('isBlank='+isBlank);                   
+						if (temp_line == '' && isBlank) { // first char is blank
                                                                                                                             continue;
 						} 
                                                                                                                             
                                                                                                                             c += isHalf ? 0.5 : 1;
                                                                                                                             //c+=(temp_char_code<=128) ? 0.5  : 1; 
                                                                                                                             temp_line += temp_char;   
-                                                                                                                            
-                                                                                                                            if(isBlank)
-                                                                                                                                _lastBlankIdx = _z +_remainIdx;
+                                                                                                                            console.log('temp_line='+temp_line);
+                                                                                                                           
+                                                                                                                           
+                                                                                                                           
+                                                                                                                           _lastBlankIdx = _z; // final fix ?
+                                                                                                                           
+                                                                                                                           if(isBlank)
+                                                                                                                                _lastBlankIdx = _z + _remainIdx;
                                                                                                                             
                                                                                                                         if (c >= max_chars) {
                                                                                                                             console.log('c >= max_chars');                                                             
 
-                                                                                                                              if(z < line.length-1)
+                                                                                                                              if(z < line.length-1) // 
                                                                                                                               {
                                                                                                                                   var _nextChar = line.charAt(z+1);
-                                                                                                                                 console.log('_nextChar='+_nextChar);         
-                                                                                                                                  if(_nextChar != 12288 && _nextChar != 32)
+                                                                                                                                  let _nextCharCode = _nextChar.charCodeAt();
+                                                                                                                                  console.log('_nextChar='+_nextChar + ' ' + _nextCharCode);         
+                                                                                                                                  if(_nextCharCode != ! 12288 && _nextCharCode != 32)
                                                                                                                                   {
-                                                                                                                                    console.log('_lastBlankIdx=' + _lastBlankIdx);  
+                                                                                                                                     console.log('_lastBlankIdx=' + _lastBlankIdx);  
                                                                                                                                      remainStr = temp_line.substring(_lastBlankIdx);
                                                                                                                                      temp_line = temp_line.substring(0, _lastBlankIdx);
                                                                                                                                      console.log('remainStr='+remainStr);
