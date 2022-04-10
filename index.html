@@ -4,19 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>typing.js</title> 
 <script
-  src="https://code.jquery.com/jquery-1.3.2.min.js"
-  integrity="sha256-yDcKLQUDWenVBazEEeb0V6SbITYKIebLySKbrTp2eJk="
+  src="https://code.jquery.com/jquery-1.3.2.min.js" 
   crossorigin="anonymous"></script>
 <script language="javascript" src="js/jquery.dimensions.js"></script>
 <script language="javascript" src="js/jquery.tooltip.min.js"></script> 
-<script language="javascript" src="js/wpmtw.js?<?=$this->session->userdata('session_id');?>"></script> 
+<script language="javascript" src="js/wpmtw.js?"></script> 
+<script language="javascript" src="js/wpmtw.cookie.js?"></script> 
 <link rel="stylesheet" type="text/css" media="all" href="css/style.css?<?=$this->session->userdata('session_id');?>" />  
 <link rel="stylesheet" type="text/css" media="all" href="css/jquery.tooltip.css" />  
 <script>
 
   
-    wpmtw.url = '<?=site_url('')?>';
-    wpmtw.index = '<?=site_url('/')?>';
+    wpmtw.url = '' ;
+    wpmtw.index = '';
   
 //wpmtw.debug = false;
  
@@ -83,7 +83,7 @@ $(document).ready(function(){
         <div id="center" class="float"> 
             <div  class="float fs_div">
                 <fieldset>
-                    <legend id="content_title">{ 請輸入文章 }</legend> 
+                    <legend id="content_title">{ typing.js }</legend> 
                     
                     
                     
@@ -95,15 +95,15 @@ $(document).ready(function(){
                     
                     
                     
-                    <script language="javascript" src="js/jquery.timers.js"></script>
+<script language="javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="js/jquery.scrollTo.js"></script> 
-<script type="text/javascript" src="js/wpmtw.exam.js?<?=$this->session->userdata('session_id');?>"></script>   
-<script type="text/javascript" src="js/wpmtw.exam.editor.js?<?=$this->session->userdata('session_id');?>"></script>   
+<script type="text/javascript" src="js/wpmtw.exam.js?"></script>   
+<script type="text/javascript" src="js/wpmtw.exam.editor.js?"></script>   
                     
                     
-                    <script>
+<script>
 $(document).ready(function(){
-	wpmtw.exam.editor.init();	
+    wpmtw.exam.editor.init();	
 });
 </script>
 <style>
@@ -130,12 +130,16 @@ $(document).ready(function(){
 	border-bottom:dashed 1px #000000;
 } 
 </style> 
+
+
+<div id="dvEditor" style="">
+
 	<textarea id="exam_past_area"></textarea> 
 	<div id="exam_preview" style="display:none"></div>
 	
     <div style="margin:10px; text-align:center;">
 		<input type="button" value="下一步" onClick="wpmtw.exam.editor.do_submit();"class="bt">  
-		<input type="button" value="重設" onClick="wpmtw.exam.editor.do_reset();" class="bt">  
+		<input type="button" value="重設" onClick="wpmtw.exam.editor.do_reset();" class="bt">   
 	</div>
 	<form action=""  id="frm" method="post">
 		<input type="hidden" id="f_title" name="f_title">
@@ -145,6 +149,7 @@ $(document).ready(function(){
         <input type="hidden" id="mid" name="mid" value="" />
 	</form>
                     
+</div>                    
                     
                     
                     
@@ -157,11 +162,89 @@ $(document).ready(function(){
                     
                     
                     
+<!-- play -->                    
                     
-                    
-                    
-                    
-                    
+<script language="javascript" src="js/jquery.timers.js"></script>
+<script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+<!-- <script type="text/javascript" src="js/wpmtw.exam.js?"></script> -->
+ 
+ 
+<style>　
+	#dock {
+	 left:10px;
+	 bottom: 0;
+	 background-color: #CCCCCC;
+	 position: fixed;
+	 overflow: hidden;
+	 height: 18px;
+	 width: 200px; 
+	 color: #333;
+	 border: 1px outset ;
+	 border-bottom: none;
+	 cursor:default;
+	 padding:3px;
+	 padding-bottom:1px;
+	 visibility:hidden; 
+	}
+	a{
+		/*font-weight:bolder;*/
+	}
+
+</style>
+ 
+<!-- <div id="status" align="left"> 
+    <span id="count"></span>
+    <span id="realtime_wpm"></span>
+    <span id="progress"></span>
+ </div>-->
+<div id="dvPlay" style="display:none;">
+			<div id="exam_boder" align="left">
+				
+				<div id="exam" align="left">
+					<? for($i=0;$i<$line_count;$i++) : ?>
+					<div id="past_line<?=$i?>" class="line">&nbsp;</div>
+					<? endfor ; ?> 
+					<? for($i=$line_count;$i<6;$i++) : ?>
+					<div id="past_line<?=$i?>" class="line">&nbsp;</div>
+					<? endfor ; ?> 	
+					
+					<div id="line0" class="line">&nbsp;</div>
+					<div id="keyinline" class="line" style=" background-color:#FFFFB0; border-bottom: dashed 1px #FF0000;">
+						<input type="text" id="keyin" onpaste="return false;"/>
+					</div>
+					<div id="line1" class="line">&nbsp;</div>
+					<div id="line2" class="line">&nbsp;</div>
+					<div id="line3" class="line">&nbsp;</div>
+					<div id="line4" class="line">&nbsp;</div>
+					<div id="line5" class="line">&nbsp;</div>
+					
+					<? for($i=6;$i<$line_count;$i++) : ?>
+					<div id="line<?=$i?>" class="line">&nbsp;</div>
+					<? endfor ; ?> 	
+				</div>
+			</div>  
+
+
+
+
+
+
+
+	 <div style="margin:5px; margin-top:20px;" id="test-area">
+                        <fieldset>
+                            <legend>{ 測試調整區 }</legend>
+                                   <input type="text" class="line" l="1" style="border:none; border-bottom:dashed 1px #666; width:99%"/>
+                                   <input type="text" class="line" l="2" style="border:none; border-bottom:dashed 1px #666; width:99%"/>
+                                   <input type="text" class="line" l="3" style="border:none; border-bottom:dashed 1px #666; width:99%"/>
+                        </fieldset>
+	</div> 
+</div>
+
+<!-- play -->                    
+
+
+ <div  class="wpm_symbol hide" style="position: absolute"> </div>
+ <div  class="return_symbol hide" style="position: absolute"> &nbsp⏎&nbsp </div> <!--  ↵  -->
                     
                     
                     
