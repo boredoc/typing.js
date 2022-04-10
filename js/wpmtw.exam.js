@@ -921,7 +921,42 @@ wpmtw.exam.play = {
 	save_score: function() {
 		wpmtw.go_to(wpmtw.url + 'exam/save_score');
 
-	}
+	},
+        
+        
+                    preInit : function(total_words, full, half, exam_lines){
+                            console.log('preInit...');
+                            //wpmtw.exam.ajax_page = "<?=site_url('exam/ajax');?>";
+                            //wpmtw.exam.title = '<?=addslashes(htmlspecialchars($exam_title))?>'; 
+                            //wpmtw.exam.play.title = '<?=addslashes(htmlspecialchars($exam_title))?>'; 
+                            wpmtw.exam.play.score.total_c = total_words ; 
+                            //<? for($i=0;$i<$line_count;$i++) : ?>
+                            //wpmtw.exam.play.line[<?=$i?>] = '<?=addslashes(htmlspecialchars($exam_lines[$i]))?>';
+                            //<? endfor ; ?> 
+                            
+                            for(i=0; i < exam_lines.length; i++)
+                            { 
+                                console.log(exam_lines[i]);
+                                wpmtw.exam.play.line[i] = exam_lines[i];
+                                
+                            }
+                            
+                            //wpmtw.exam.play.url = "<?=site_url('exam');?>";
+                            //wpmtw.exam.play.id  = <?=$id;?>; 
+                            //wpmtw.exam.play.login_data = <?= json_encode($login_data) ?> ;
+
+                            //wpmtw.exam.owner.account = '<?=$owner_account?>';
+                            //wpmtw.exam.owner.id = <?=$owner_id?>;
+                            wpmtw.exam.total_words = total_words;
+                            wpmtw.exam.full = full;
+                            wpmtw.exam.half = half; 
+
+                            wpmtw.exam.play.init();
+
+ 
+                        
+                        
+                    }
 
 
 };
