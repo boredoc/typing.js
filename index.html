@@ -3,14 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>typing.js</title> 
-<script
-  src="https://code.jquery.com/jquery-1.3.2.min.js" 
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.3.2.min.js" ></script>
 <script language="javascript" src="js/jquery.dimensions.js"></script>
 <script language="javascript" src="js/jquery.tooltip.min.js"></script> 
 <script language="javascript" src="js/wpmtw.js?"></script> 
 <script language="javascript" src="js/wpmtw.cookie.js?"></script> 
-<link rel="stylesheet" type="text/css" media="all" href="css/style.css?<?=$this->session->userdata('session_id');?>" />  
+<link rel="stylesheet" type="text/css" media="all" href="css/style.css" />  
 <link rel="stylesheet" type="text/css" media="all" href="css/jquery.tooltip.css" />  
 <script>
 
@@ -198,38 +196,34 @@ $(document).ready(function(){
     <span id="progress"></span>
  </div>-->
 <div id="dvPlay" style="display:none;">
-			<div id="exam_boder" align="left">
-				
-				<div id="exam" align="left">
-					<? for($i=0;$i<$line_count;$i++) : ?>
-					<div id="past_line<?=$i?>" class="line">&nbsp;</div>
-					<? endfor ; ?> 
-					<? for($i=$line_count;$i<6;$i++) : ?>
-					<div id="past_line<?=$i?>" class="line">&nbsp;</div>
-					<? endfor ; ?> 	
-					
-					<div id="line0" class="line">&nbsp;</div>
-					<div id="keyinline" class="line" style=" background-color:#FFFFB0; border-bottom: dashed 1px #FF0000;">
-						<input type="text" id="keyin" onpaste="return false;"/>
-					</div>
-					<div id="line1" class="line">&nbsp;</div>
-					<div id="line2" class="line">&nbsp;</div>
-					<div id="line3" class="line">&nbsp;</div>
-					<div id="line4" class="line">&nbsp;</div>
-					<div id="line5" class="line">&nbsp;</div>
-					
-					<? for($i=6;$i<$line_count;$i++) : ?>
-					<div id="line<?=$i?>" class="line">&nbsp;</div>
-					<? endfor ; ?> 	
-				</div>
-			</div>  
+                <div id="exam_boder" align="left">
 
+                        <div id="exam" align="left">
+                                                                                           <!-- 
+                                <? for($i=0;$i<$line_count;$i++) : ?>
+                                <div id="past_line<?=$i?>" class="line">&nbsp;</div>
+                                <? endfor ; ?> 
+                                <? for($i=$line_count;$i<6;$i++) : ?>
+                                <div id="past_line<?=$i?>" class="line">&nbsp;</div>
+                                <? endfor ; ?> 	
 
+                                <div id="line0" class="line">&nbsp;</div>
+                                <div id="keyinline" class="line" style=" background-color:#FFFFB0; border-bottom: dashed 1px #FF0000;">
+                                        <input type="text" id="keyin" onpaste="return false;"/>
+                                </div>
+                                <div id="line1" class="line">&nbsp;</div>
+                                <div id="line2" class="line">&nbsp;</div>
+                                <div id="line3" class="line">&nbsp;</div>
+                                <div id="line4" class="line">&nbsp;</div>
+                                <div id="line5" class="line">&nbsp;</div>
 
-
-
-
-
+                                <? for($i=6;$i<$line_count;$i++) : ?>
+                                <div id="line<?=$i?>" class="line">&nbsp;</div>
+                                <? endfor ; ?> 	
+                                                                                           -->
+                        </div>
+                </div>  
+ 
 	 <div style="margin:5px; margin-top:20px;" id="test-area">
                         <fieldset>
                             <legend>{ 測試調整區 }</legend>
