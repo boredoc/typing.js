@@ -617,13 +617,18 @@ wpmtw.exam.play = {
                         ch = ch.replace(/&gt;/g, ">");
                         return ch;
                      },
-                     
-                     
-                     
-                     initGauge: function(){  // 20220411 show gauge at start
-                         //console.log('initGauge');
-                         with(wpmtw.exam.play) {
-                                gaugeSpeed = new RadialGauge({
+
+	init: function() {
+
+		/*				$('#exam_info').html(	'建立者:' + wpmtw.exam.owner.account +'<BR>'+
+											 				'字元:'+wpmtw.exam.total_words+'<BR>'+
+											 			 	'全形:'+wpmtw.exam.full+'<BR>'+
+															'半形:'+wpmtw.exam.half); */
+
+
+		with(wpmtw.exam.play) {
+
+			gaugeSpeed = new RadialGauge({
 				renderTo: 'speed_gauge',
 				width: 170,
 				height: 170,
@@ -694,31 +699,11 @@ wpmtw.exam.play = {
 				barWidth: 10,
 				barBeginCircle: false,
 				colorBarProgress: '#ff8282'
-			}).draw();  
-                                 
-                             
+			}).draw();
+
+
                                                             $('#speed_gauge').removeClass('hide');
                                                             $('#progress_gauge').removeClass('hide');
-
-                         }
-                     
-                         
-                     },
-                     
-                     
-
-	init: function() {
-
-		/*				$('#exam_info').html(	'建立者:' + wpmtw.exam.owner.account +'<BR>'+
-											 				'字元:'+wpmtw.exam.total_words+'<BR>'+
-											 			 	'全形:'+wpmtw.exam.full+'<BR>'+
-															'半形:'+wpmtw.exam.half); */
-
-
-		with(wpmtw.exam.play) {
-
-			
-
 
 			for (i = 0; i < line.length; i++) {
 				total_words += unhtmlspecialchars(line[i]).length;

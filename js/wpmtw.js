@@ -79,8 +79,7 @@ var wpmtw = {
 					showBody: " - ", 
 					fade: 250 
 				});
-                                                        
-                                                                        wpmtw.exam.play.initGauge(); // 20220411 show gauge at start
+			
 			}
 }
 
@@ -112,8 +111,6 @@ wpmtw.template = {
 //				$(window).resize(function(){
 //					wpmtw.template.resize();			   
 //				});	
-
-
 			} 
 }
 
