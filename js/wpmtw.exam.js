@@ -359,18 +359,18 @@ wpmtw.exam.play = {
 			$('#line5').html("<a href='javascript:wpmtw.exam.play.save_score();' title='save score'>儲存成績</a>&nbsp;&nbsp;<a href='javascript:wpmtw.exam.play.play_again();' title='play again'>再打一次</a>").css('text-align', 'center');
 
 			// update_temp_score 
-			$.ajax({
-				type: "POST",
-				url: wpmtw.exam.ajax_page + '/update_temp_score',
-				data: $.param(score, true) + '&exam_id=' + id + '&exam_title=' + title,
-				cache: false,
-				success: function(msg) {
-
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("Error: " + textStatus);
-				}
-			});
+//			$.ajax({
+//				type: "POST",
+//				url: wpmtw.exam.ajax_page + '/update_temp_score',
+//				data: $.param(score, true) + '&exam_id=' + id + '&exam_title=' + title,
+//				cache: false,
+//				success: function(msg) {
+//
+//				},
+//				error: function(XMLHttpRequest, textStatus, errorThrown) {
+//					alert("Error: " + textStatus);
+//				}
+//			});
 
 
 
@@ -688,7 +688,7 @@ wpmtw.exam.play = {
 				needleWidth: 3,
 				colorNeedle: "#222",
 				colorNeedleEnd: "#222",
-				animationDuration: 1500,
+				animationDuration: 500,
 				animationRule: "linear",
 				animationTarget: "plate",
 				barWidth: 10,
@@ -705,8 +705,8 @@ wpmtw.exam.play = {
                                                             //wpmtw.exam.play.gaugeTricks(0);
                                                             gaugeSpeed.value = 180;
                                                             gaugeProgress.value = 100;
-                                                            setTimeout('wpmtw.exam.play.gaugeSpeed.value = 0;', 1800);
-                                                            setTimeout('wpmtw.exam.play.gaugeProgress.value = 0;', 1800);
+                                                            setTimeout('wpmtw.exam.play.gaugeSpeed.value = 0;', 1000);
+                                                            setTimeout('wpmtw.exam.play.gaugeProgress.value = 0;', 1000);
                                                             
                          }
                      
