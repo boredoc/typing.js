@@ -633,7 +633,7 @@ wpmtw.exam.play = {
 				exactTicks: true,
 				borders: false,
 				animatedValue: true,
-				animateOnInit: true,
+				animateOnInit: false,
 				// progress bar
 				barWidth: 5, // percents
 				barStrokeWidth: 0, // pixels
@@ -700,12 +700,20 @@ wpmtw.exam.play = {
                                                             $('#speed_gauge').removeClass('hide');
                                                             $('#progress_gauge').removeClass('hide');
 
+
+                                                            //tricks
+                                                            //wpmtw.exam.play.gaugeTricks(0);
+                                                            gaugeSpeed.value = 180;
+                                                            gaugeProgress.value = 100;
+                                                            setTimeout('wpmtw.exam.play.gaugeSpeed.value = 0;', 1800);
+                                                            setTimeout('wpmtw.exam.play.gaugeProgress.value = 0;', 1800);
+                                                            
                          }
                      
                          
                      },
                      
-                     
+ 
 
 	init: function() {
 
