@@ -455,7 +455,7 @@ wpmtw.exam.play = {
                                                             add_log("line="+line[j]);
                                                             var decodeLine = unhtmlspecialchars(line[j]);
                                                             add_log("decodeLine="+decodeLine);
-			var len = decodeLine.length;// line[j].length;
+                                                            //var len = decodeLine.length;// line[j].length;
 
 			var result = '',
 				result2 = '',
@@ -466,7 +466,19 @@ wpmtw.exam.play = {
 				correct = 0,
 				wrong = 0; 
 			var current_flag = false;
-			for (i = 0; i <= len; i++) {
+                        
+                                                            //#4 handle Zhuyin(IME) charaters while typing 
+                                                            var isIME = false;
+                                                            _char = htmlspecialchars( input.charAt(  input.length-1  ) );  
+                                                            if(_char.match(/[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]/g))
+                                                            { 
+                                                                //console.log('注音輸入中');
+                                                                isIME = true;
+                                                            }
+                                                            
+                                                            if(!isIME)
+			for (i = 0; i <= decodeLine.length; i++) {
+                                                                            
 				if (i < input.length) {  
 					if (decodeLine.charAt(i) != input.charAt(i)) { //wrong
 						char = htmlspecialchars(input.charAt(i));
@@ -546,8 +558,9 @@ wpmtw.exam.play = {
                             
                             
                                                             add_log("result="+result);
-
-			$('#exam').find('#line0').html(result);
+                                                            
+                                                            if(!isIME)
+                                                                $('#exam').find('#line0').html(result);
                         
                                                             if(showReturn)
                                                             {
@@ -572,6 +585,10 @@ wpmtw.exam.play = {
                                                                 {
                                                                     $('#char').html($('#char').html() +'<br><span class=green>韓文</sapn>');
                                                                 }
+                                                                else if(current_char.match(/[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]/g))
+                                                                {
+                                                                    $('#char').html($('#char').html() +'<br><span class=green>注音符號</sapn>');
+                                                                }
                                                                 else if(current_char.match(/[\u0800-\u4e00]/g))
                                                                 {
                                                                     if(current_char_num >= 12288 && current_char_num <= 12319) 
@@ -580,7 +597,7 @@ wpmtw.exam.play = {
                                                                         $('#char').html($('#char').html() +'<br><span class=yellow>全形符號</span>');
                                                                     }
                                                                     else
-                                                                    {
+                                                                    { 
                                                                         $('#char').html($('#char').html() +'<br><span class=green>日文</sapn>');
                                                                     }
                                                                 }
