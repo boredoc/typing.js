@@ -59,7 +59,7 @@ wpmtw.exam.play = {
 
 	ajax_page: '',
 	ver: '0.1',
-                    countdown: 5, //倒數幾秒
+                    countdown: 3, //倒數幾秒
 	login_data: new Object(),
 	title: '',
 	url: '',
