@@ -16,7 +16,7 @@ wpmtw.exam.editor = {
 	re_half: /[\u0000-\u00ff]/,
 	re_ch: /[\u4e00-\u9a05]/,
 
-                    pasteTips : '請輸入或直接貼上...\n\n或輸入0~n按enter載入demo articles' ,
+                    pasteTips : '請輸入文章或直接貼上...\n\n或輸入0~n按enter載入demo articles' ,
 
 	split: function() {
 
